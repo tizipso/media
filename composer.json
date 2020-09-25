@@ -1,0 +1,26 @@
+{
+    "name": "tizipso/media",
+    "description": "Media manager for dcat-admin",
+    "type": "library",
+    "keywords": ["dcat-admin", "extension"],
+    "homepage": "https://github.com/tizipso/media",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "tizips",
+            "email": "tizips@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0",
+        "dcat/laravel-admin": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dcat\\Admin\\Extension\\Media\\": "src/"
+        },
+         "files": [
+            "src/bootstrap.php"
+        ]
+    }
+}
