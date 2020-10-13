@@ -52,11 +52,11 @@ Dcat.ready(function () {
                     'files[]':[path],
                 },
                 success: function (data) {
-                    Dcat.reload();
                     
                     if (typeof data === 'object') {
                         if (data.status) {
                             Dcat.success(data.message);
+                            Dcat.reload();
                         } else {
                             Dcat.error(data.message);
                         }
@@ -91,18 +91,18 @@ Dcat.ready(function () {
                 // _token:LA.token,
             },
             success: function (data) {
-                Dcat.reload();
 
                 if (typeof data === 'object') {
                     if (data.status) {
+                        closeModal();
                         Dcat.success(data.message);
+                        Dcat.reload();
                     } else {
                         Dcat.error(data.message);
                     }
                 }
             }
         });
-        closeModal();
     });
     $('.file-upload').on('change', function () {
         $('.file-upload-form').submit();
@@ -116,11 +116,13 @@ Dcat.ready(function () {
             data: formData,
             async: false,
             success: function (data) {
-                Dcat.reload();
 
                 if (typeof data === 'object') {
                     if (data.status) {
+                        closeModal();
+
                         Dcat.success(data.message);
+                        Dcat.reload();
                     } else {
                         Dcat.error(data.message);
                     }
@@ -130,7 +132,6 @@ Dcat.ready(function () {
             contentType: false,
             processData: false
         });
-        closeModal();
     });
     function closeModal() {
         $("#moveModal").modal('toggle');
@@ -144,29 +145,6 @@ Dcat.ready(function () {
         var path = $('.goto-url input').val();
         Dcat.reload("{{ $url['index'] }}?path=" + path);
     });
-    $('.files-select-all').on('ifChanged', function(event) {
-        console.log(this);
-        if (this.checked) {
-            // $('.grid-row-checkbox').check('check');
-        } else {
-            // $('.grid-row-checkbox').check('uncheck');
-        }
-    });
-    // $('.file-select input').iCheck({checkboxClass:'icheckbox_minimal-blue'}).on('ifChanged', function () {
-    //     if (this.checked) {
-    //         $(this).closest('tr').css('background-color', '#ffffd5');
-    //     } else {
-    //         $(this).closest('tr').css('background-color', '');
-    //     }
-    // });
-    // $('.file-select-all input').iCheck({checkboxClass:'icheckbox_minimal-blue'}).on('ifChanged', function () {
-    //     console.log(this)
-    //     if (this.checked) {
-    //         $('.file-select input').iCheck('check');
-    //     } else {
-    //         $('.file-select input').iCheck('uncheck');
-    //     }
-    // });
     $('.file-select-all input').click(function () {
         // console.log('test');
         if (this.checked) {
