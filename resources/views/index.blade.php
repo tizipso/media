@@ -113,18 +113,20 @@ Dcat.ready(function () {
                 // _token:LA.token,
             },
             success: function (data) {
-                Dcat.reload();
 
                 if (typeof data === 'object') {
                     if (data.status) {
+                        closeModal();
+
                         Dcat.success(data.message);
+                        Dcat.reload();
+
                     } else {
                         Dcat.error(data.message);
                     }
                 }
             }
         });
-        closeModal();
     });
     $('.file-upload').on('change', function () {
         $('.file-upload-form').submit();
@@ -139,11 +141,12 @@ Dcat.ready(function () {
             async: false,
             success: function (data) {
                 // $.pjax.reload('#pjax-container');
-                Dcat.reload();
 
                 if (typeof data === 'object') {
                     if (data.status) {
+                        closeModal();
                         Dcat.success(data.message);
+                        Dcat.reload();
                     } else {
                         Dcat.error(data.message);
                     }
@@ -153,7 +156,6 @@ Dcat.ready(function () {
             contentType: false,
             processData: false
         });
-        closeModal();
     });
     function closeModal() {
         $("#moveModal").modal('toggle');
@@ -183,10 +185,11 @@ Dcat.ready(function () {
                     'files[]':files,
                 },
                 success: function (data) {
-                    Dcat.reload();
                     
                     if (typeof data === 'object') {
                         if (data.status) {
+                            Dcat.reload();
+
                             Dcat.success(data.message);
                         } else {
                             Dcat.error(data.message);
